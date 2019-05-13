@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--导入配置属性-->
+    <properties resource="JDBC.properties"/>
+    <context id="default" targetRuntime="Mybatis3">
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${db.driverClassName}"
+                        connectionURL="${db.connectionURL}"
+                        userId="${db.username}"
+                        password="${db.password}"/>
+
+        <!--非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        
+        <javaModelGenerator targetPackage="com.leo.pojo" targetProject="./src/main/java">
+            <!--是否允许子包，即targetPackage.schemaName.tableName-->
+            <property name="enableSubPackages" value="false"/>
+            <!--是否对model添加 构造函数-->
+            <property name="constructorBased" value="true"/>
+            <!--是否对char类型的列数据进行trim操作-->
+            <property name="trimStrings" value="true"/>
+            <!--建立的Model对象是否不可改变，即生成的Model对象不会有set方法-->
+            <property name="immutable" value="false"/>
+        </javaModelGenerator>
+
+        <!--mapper映射文件生成所在的目录，为每一个数据库的表生成一个对应的SqlMap文件-->
+        <sqlMapGenerator targetPackage="mappers" targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.leo.dao" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <table tableName="monitor" domainObjectName="Monitor" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="constructorBased" value="false"/>
+            <property name="immutable" value="false"/>
+            <property name="modelOnly" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
+        <table tableName="image" domainObjectName="Image" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="constructorBased" value="false"/>
+            <property name="immutable" value="false"/>
+            <property name="modelOnly" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
+    </context>
+</generatorConfiguration>

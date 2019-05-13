@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.leo.dao.ImageMapper" >
+  <resultMap id="BaseResultMap" type="com.leo.pojo.Image" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="TINYINT" />
+    <result column="camera_id" property="cameraId" jdbcType="TINYINT" />
+    <result column="preset_id" property="presetId" jdbcType="TINYINT" />
+    <result column="imagePath" property="imagepath" jdbcType="CHAR" />
+    <result column="weather" property="weather" jdbcType="CHAR" />
+    <result column="acquired_time" property="acquiredTime" jdbcType="DATE" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, camera_id, preset_id, imagePath, weather, acquired_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from image
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from image
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.leo.pojo.Image" >
+    insert into image (id, user_id, camera_id, 
+      preset_id, imagePath, weather, 
+      acquired_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=TINYINT}, #{cameraId,jdbcType=TINYINT}, 
+      #{presetId,jdbcType=TINYINT}, #{imagepath,jdbcType=CHAR}, #{weather,jdbcType=CHAR}, 
+      #{acquiredTime,jdbcType=DATE}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.leo.pojo.Image" >
+    insert into image
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="cameraId != null" >
+        camera_id,
+      </if>
+      <if test="presetId != null" >
+        preset_id,
+      </if>
+      <if test="imagepath != null" >
+        imagePath,
+      </if>
+      <if test="weather != null" >
+        weather,
+      </if>
+      <if test="acquiredTime != null" >
+        acquired_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=TINYINT},
+      </if>
+      <if test="cameraId != null" >
+        #{cameraId,jdbcType=TINYINT},
+      </if>
+      <if test="presetId != null" >
+        #{presetId,jdbcType=TINYINT},
+      </if>
+      <if test="imagepath != null" >
+        #{imagepath,jdbcType=CHAR},
+      </if>
+      <if test="weather != null" >
+        #{weather,jdbcType=CHAR},
+      </if>
+      <if test="acquiredTime != null" >
+        #{acquiredTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.leo.pojo.Image" >
+    update image
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=TINYINT},
+      </if>
+      <if test="cameraId != null" >
+        camera_id = #{cameraId,jdbcType=TINYINT},
+      </if>
+      <if test="presetId != null" >
+        preset_id = #{presetId,jdbcType=TINYINT},
+      </if>
+      <if test="imagepath != null" >
+        imagePath = #{imagepath,jdbcType=CHAR},
+      </if>
+      <if test="weather != null" >
+        weather = #{weather,jdbcType=CHAR},
+      </if>
+      <if test="acquiredTime != null" >
+        acquired_time = #{acquiredTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.leo.pojo.Image" >
+    update image
+    set user_id = #{userId,jdbcType=TINYINT},
+      camera_id = #{cameraId,jdbcType=TINYINT},
+      preset_id = #{presetId,jdbcType=TINYINT},
+      imagePath = #{imagepath,jdbcType=CHAR},
+      weather = #{weather,jdbcType=CHAR},
+      acquired_time = #{acquiredTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.leo.dao.MonitorMapper" >
+  <resultMap id="BaseResultMap" type="com.leo.pojo.Monitor" >
+    <id column="id" property="id" jdbcType="TINYINT" />
+    <result column="ip" property="ip" jdbcType="INTEGER" />
+    <result column="place" property="place" jdbcType="VARCHAR" />
+    <result column="presetCount" property="presetcount" jdbcType="TINYINT" />
+    <result column="recordImageNum" property="recordimagenum" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ip, place, presetCount, recordImageNum, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Byte" >
+    select 
+    <include refid="Base_Column_List" />
+    from monitor
+    where id = #{id,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte" >
+    delete from monitor
+    where id = #{id,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.leo.pojo.Monitor" >
+    insert into monitor (id, ip, place, 
+      presetCount, recordImageNum, create_time, 
+      update_time)
+    values (#{id,jdbcType=TINYINT}, #{ip,jdbcType=INTEGER}, #{place,jdbcType=VARCHAR}, 
+      #{presetcount,jdbcType=TINYINT}, #{recordimagenum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.leo.pojo.Monitor" >
+    insert into monitor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="place != null" >
+        place,
+      </if>
+      <if test="presetcount != null" >
+        presetCount,
+      </if>
+      <if test="recordimagenum != null" >
+        recordImageNum,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=TINYINT},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=INTEGER},
+      </if>
+      <if test="place != null" >
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="presetcount != null" >
+        #{presetcount,jdbcType=TINYINT},
+      </if>
+      <if test="recordimagenum != null" >
+        #{recordimagenum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.leo.pojo.Monitor" >
+    update monitor
+    <set >
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=INTEGER},
+      </if>
+      <if test="place != null" >
+        place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="presetcount != null" >
+        presetCount = #{presetcount,jdbcType=TINYINT},
+      </if>
+      <if test="recordimagenum != null" >
+        recordImageNum = #{recordimagenum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.leo.pojo.Monitor" >
+    update monitor
+    set ip = #{ip,jdbcType=INTEGER},
+      place = #{place,jdbcType=VARCHAR},
+      presetCount = #{presetcount,jdbcType=TINYINT},
+      recordImageNum = #{recordimagenum,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+</mapper>
